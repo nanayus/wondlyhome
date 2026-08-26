@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 
+const GA_MEASUREMENT_ID = "G-EKK3YHBQQL";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headerList = await headers();
   const host = headerList.get("x-forwarded-host") ?? headerList.get("host") ?? "wondly.net";
@@ -40,6 +42,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="ko">
       <head>
         <meta name="google-adsense-account" content="ca-pub-2586236796433286" />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}');
+            `,
+          }}
+        />
       </head>
       <body>{children}</body>
     </html>
