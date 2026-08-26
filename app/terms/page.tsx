@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 
-const description = "Wondly 서비스 이용약관입니다.";
-export const metadata: Metadata = { title: "Terms", description, openGraph: { title: "Terms | Wondly", description, images: [] }, twitter: { card: "summary", title: "Terms | Wondly", description, images: [] } };
+const description = "Wondly 웹사이트와 데이터 도구의 이용 조건, 책임 범위와 Lotto Analysis 안내를 확인하세요.";
+export const metadata: Metadata = {
+  title: "서비스 이용약관",
+  description,
+  alternates: { canonical: "https://wondly.net/terms" },
+  openGraph: { title: "서비스 이용약관 | Wondly", description, url: "https://wondly.net/terms", images: [] },
+  twitter: { card: "summary", title: "서비스 이용약관 | Wondly", description, images: [] },
+};
 
 export default function TermsPage() {
   return <><SiteHeader /><main className="content-page policy-page"><header className="content-hero"><p>TERMS OF USE</p><h1>서비스 이용약관</h1><div className="content-lead">Wondly의 웹사이트와 도구를 이용하기 전에 아래 내용을 확인해주세요.</div><time dateTime="2026-08-27">시행일: 2026년 8월 27일</time></header><article className="prose policy-prose">

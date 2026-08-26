@@ -3,9 +3,55 @@ import { SiteFooter, SiteHeader } from "./components/SiteChrome";
 
 const toolNumbers = [3, 11, 18, 27, 34, 42];
 
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://wondly.net/#organization",
+    name: "Wondly",
+    url: "https://wondly.net/",
+    email: "hello@wondly.net",
+    description: "복잡한 데이터를 누구나 편하게 살펴볼 수 있는 웹 도구를 만드는 독립 서비스",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://wondly.net/#website",
+    name: "Wondly",
+    url: "https://wondly.net/",
+    inLanguage: "ko-KR",
+    publisher: { "@id": "https://wondly.net/#organization" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Wondly 웹 도구",
+    numberOfItems: 1,
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@type": "WebApplication",
+          name: "Lotto Analysis",
+          url: "https://lotto.wondly.net/",
+          applicationCategory: "DataVisualizationApplication",
+          operatingSystem: "Web",
+          isAccessibleForFree: true,
+          description: "대한민국 로또 6/45의 과거 당첨 데이터를 번호별·조합별로 탐색하는 웹 도구",
+        },
+      },
+    ],
+  },
+];
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <SiteHeader />
       <main>
         <section className="hero" aria-labelledby="hero-title">

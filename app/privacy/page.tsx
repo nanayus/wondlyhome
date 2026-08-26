@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 
-const description = "Wondly 개인정보처리방침입니다.";
-export const metadata: Metadata = { title: "Privacy Policy", description, openGraph: { title: "Privacy Policy | Wondly", description, images: [] }, twitter: { card: "summary", title: "Privacy Policy | Wondly", description, images: [] } };
+const description = "Wondly 웹사이트와 도구의 개인정보 처리, 쿠키, 광고 및 이용자 권리를 안내합니다.";
+export const metadata: Metadata = {
+  title: "개인정보처리방침",
+  description,
+  alternates: { canonical: "https://wondly.net/privacy" },
+  openGraph: { title: "개인정보처리방침 | Wondly", description, url: "https://wondly.net/privacy", images: [] },
+  twitter: { card: "summary", title: "개인정보처리방침 | Wondly", description, images: [] },
+};
 
 export default function PrivacyPage() {
   return <><SiteHeader /><main className="content-page policy-page"><header className="content-hero"><p>PRIVACY POLICY</p><h1>개인정보처리방침</h1><div className="content-lead">Wondly는 서비스 제공에 필요한 범위에서만 정보를 처리하고, 처리 목적과 방법을 투명하게 안내합니다.</div><time dateTime="2026-08-27">시행일: 2026년 8월 27일</time></header><article className="prose policy-prose">

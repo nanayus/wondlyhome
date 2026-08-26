@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { SiteFooter, SiteHeader } from "../components/SiteChrome";
 
-const description = "Wondly가 만드는 도구와 운영 원칙을 소개합니다.";
-export const metadata: Metadata = { title: "About", description, openGraph: { title: "About | Wondly", description, images: [] }, twitter: { card: "summary", title: "About | Wondly", description, images: [] } };
+const description = "복잡한 데이터를 이해하기 쉬운 웹 도구로 만드는 Wondly의 이야기와 운영 원칙을 소개합니다.";
+export const metadata: Metadata = {
+  title: "Wondly 소개",
+  description,
+  alternates: { canonical: "https://wondly.net/about" },
+  openGraph: { title: "Wondly 소개 | Wondly", description, url: "https://wondly.net/about", images: [] },
+  twitter: { card: "summary", title: "Wondly 소개 | Wondly", description, images: [] },
+};
 
 export default function AboutPage() {
   return <><SiteHeader /><main className="content-page"><header className="content-hero"><p>ABOUT WONDLY</p><h1>이해하기 쉬운 도구는<br />더 나은 판단을 돕습니다.</h1><div className="content-lead">Wondly는 일상에서 마주치는 복잡한 데이터와 정보를 작고 명확한 웹 도구로 바꾸는 독립 서비스입니다.</div></header><article className="prose">

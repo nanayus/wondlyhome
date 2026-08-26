@@ -12,14 +12,36 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: new URL(origin),
+    applicationName: "Wondly",
     title: { default: title, template: "%s | Wondly" },
     description,
-    alternates: { canonical: origin },
+    creator: "Wondly",
+    publisher: "Wondly",
+    category: "technology",
+    alternates: { canonical: "https://wondly.net/" },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
     openGraph: { type: "website", locale: "ko_KR", siteName: "Wondly", title, description, url: origin, images: [{ url: `${origin}/og.png`, width: 1200, height: 630, alt: "Wondly — 일상의 궁금함을 쓸모 있는 도구로" }] },
     twitter: { card: "summary_large_image", title, description, images: [`${origin}/og.png`] },
   };
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="ko"><body>{children}</body></html>;
+  return (
+    <html lang="ko">
+      <head>
+        <meta name="google-adsense-account" content="ca-pub-2586236796433286" />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }
