@@ -6,6 +6,9 @@
     "node": ">=22.13.0"
   },
   "scripts": {
+    "sync:lotto-content": "node --no-warnings --experimental-strip-types scripts/sync-lotto-content.mjs",
+    "predev": "npm run sync:lotto-content",
+    "prebuild": "npm run sync:lotto-content",
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",

@@ -44,6 +44,25 @@ test("renders policy pages with route-specific metadata", async () => {
   assert.doesNotMatch(html, /property="og:image"/);
 });
 
+test("renders the synced Lotto story index and a semantic article page", async () => {
+  const indexResponse = await render("/stories");
+  assert.equal(indexResponse.status, 200);
+  const indexHtml = await indexResponse.text();
+  assert.match(indexHtml, /<title>Stories \| Wondly<\/title>/);
+  assert.match(indexHtml, /로또의 허와 실: 우리는 무엇을 사고 있는가/);
+  assert.match(indexHtml, /한 주를 망치지 않는 로또 루틴/);
+
+  const articleResponse = await render("/stories/lotto-myths-and-reality");
+  assert.equal(articleResponse.status, 200);
+  const articleHtml = await articleResponse.text();
+  assert.match(articleHtml, /<title>로또의 허와 실: 우리는 무엇을 사고 있는가 \| Wondly<\/title>/);
+  assert.match(articleHtml, /<h1[^>]*>로또의 허와 실: 우리는 무엇을 사고 있는가<\/h1>/);
+  assert.match(articleHtml, /<h2[^>]*>종이 한 장보다 큰 상상<\/h2>/);
+  assert.match(articleHtml, /rel="canonical" href="https:\/\/wondly.net\/stories\/lotto-myths-and-reality"/);
+  assert.match(articleHtml, /application\/ld\+json/);
+  assert.doesNotMatch(articleHtml, /property="og:image"/);
+});
+
 test("publishes the correct AdSense authorized-seller record", async () => {
   const adsTxt = await readFile(new URL("../public/ads.txt", import.meta.url), "utf8");
   assert.equal(adsTxt, "google.com, pub-2586236796433286, DIRECT, f08c47fec0942fa0\n");

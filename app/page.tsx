@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "./components/SiteChrome";
+import { getStories } from "./stories/articles";
 
 const toolNumbers = [3, 11, 18, 27, 34, 42];
 
@@ -46,6 +47,7 @@ const structuredData = [
 ];
 
 export default function Home() {
+  const latestStories = getStories().slice(0, 3);
   return (
     <>
       <script
@@ -101,8 +103,23 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="home-stories" aria-labelledby="home-stories-title">
+          <div className="section-heading dark-heading"><p>03 / STORIES</p><h2 id="home-stories-title">도구를 더 잘 읽는 이야기</h2></div>
+          <div className="home-story-grid">
+            {latestStories.map((story, index) => (
+              <article key={story.slug}>
+                <span>{String(index + 1).padStart(2, "0")} · {story.category}</span>
+                <h3><Link href={`/stories/${story.slug}`}>{story.title}</Link></h3>
+                <p>{story.summary}</p>
+                <Link href={`/stories/${story.slug}`}>읽어보기 <span aria-hidden="true">→</span></Link>
+              </article>
+            ))}
+          </div>
+          <Link className="all-stories-link" href="/stories">모든 이야기 보기 <span aria-hidden="true">↗</span></Link>
+        </section>
+
         <section className="faq" aria-labelledby="faq-title">
-          <div className="section-heading dark-heading"><p>03 / FAQ</p><h2 id="faq-title">자주 묻는 질문</h2></div>
+          <div className="section-heading dark-heading"><p>04 / FAQ</p><h2 id="faq-title">자주 묻는 질문</h2></div>
           <div className="faq-list">
             <details><summary>Wondly는 어떤 서비스인가요?<span>+</span></summary><p>복잡한 정보와 데이터를 일상에서 바로 사용할 수 있는 웹 도구로 만드는 독립 서비스입니다. 각 도구는 명확한 목적과 설명을 갖고 별도 주소에서 제공됩니다.</p></details>
             <details><summary>Lotto Analysis는 번호를 추천하나요?<span>+</span></summary><p>아니요. 과거 데이터를 탐색하고 직접 선택한 번호를 분석하는 기능만 제공합니다. 미래 번호, 당첨 가능성 또는 유리한 조합을 예측하지 않습니다.</p></details>
