@@ -24,8 +24,8 @@ test("renders the Wondly homepage with its primary content", async () => {
   assert.match(html, /Privacy Policy/);
   const documentHead = html.slice(html.indexOf("<head>"), html.indexOf("</head>") + 7);
   assert.match(documentHead, /name="google-adsense-account" content="ca-pub-2586236796433286"/);
-  assert.match(documentHead, /googletagmanager\.com\/gtag\/js\?id=G-EKK3YHBQQL/);
-  assert.match(documentHead, /gtag\('config', 'G-EKK3YHBQQL'\)/);
+  assert.match(documentHead, /googletagmanager\.com\/gtag\/js\?id=G-1N1BXQCE2K/);
+  assert.match(documentHead, /gtag\('config', 'G-1N1BXQCE2K'\)/);
   assert.match(html, /rel="canonical" href="https:\/\/wondly.net\/?"/);
   assert.match(html, /application\/ld\+json/);
   assert.match(html, /https:\/\/schema.org/);

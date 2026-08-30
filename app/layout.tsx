@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 
-const GA_MEASUREMENT_ID = "G-EKK3YHBQQL";
+const GA_MEASUREMENT_ID = "G-1N1BXQCE2K";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headerList = await headers();
