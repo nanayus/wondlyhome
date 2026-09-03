@@ -63,6 +63,19 @@ test("renders the synced Lotto story index and a semantic article page", async (
   assert.doesNotMatch(articleHtml, /property="og:image"/);
 });
 
+test("renders the AdSense script once in the shared document head", async () => {
+  for (const pathname of ["/", "/privacy", "/stories/lotto-myths-and-reality"]) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200);
+    const html = await response.text();
+    const documentHead = html.slice(html.indexOf("<head>"), html.indexOf("</head>") + 7);
+    const scripts = documentHead.match(/<script\b[^>]*src="https:\/\/pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-2586236796433286"[^>]*><\/script>/g) ?? [];
+    assert.equal(scripts.length, 1, `Expected one AdSense script in the head of ${pathname}`);
+    assert.match(scripts[0], /\basync(?:="")?(?=\s|>)/);
+    assert.match(scripts[0], /\bcrossorigin="anonymous"/i);
+  }
+});
+
 test("publishes the correct AdSense authorized-seller record", async () => {
   const adsTxt = await readFile(new URL("../public/ads.txt", import.meta.url), "utf8");
   assert.equal(adsTxt, "google.com, pub-2586236796433286, DIRECT, f08c47fec0942fa0\n");
